@@ -1,0 +1,32 @@
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog.xml
+    enabled: true
+  application:
+    name: lead
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL15Dialect
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/lead
+    username: lead
+    password: lead
+  web:
+    cors:
+      allowed-origins: "http://localhost:3000"
+      allowed-methods: "HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
+
+
+cloud:
+  aws:
+    credentials:
+      access-key: test
+      secret-key: test
+    sns:
+      topic:
+        arn: arn:aws:sns:us-east-1:000000000000:contact-created-topic
+localstack:
+  url: http://localhost:4566

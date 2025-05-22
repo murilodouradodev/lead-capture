@@ -1,0 +1,10 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: lead capture
+  description: capture all the contacts lead
+paths:
+    /v1/contact:
+      $ref: "./feature/contact.yaml#/paths/~1"
+    /v1/contact/{contactEmail}:
+      $ref: "./feature/contact.yaml#/paths/~1{contactEmail}"

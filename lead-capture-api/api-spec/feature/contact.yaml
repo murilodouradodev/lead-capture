@@ -1,0 +1,88 @@
+paths:
+  '/':
+    post:
+      tags:
+        - Contact
+      summary: Create a new contact
+      operationId: saveContact
+      description: Crate a new Contact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateNewContact"
+      responses:
+        '201':
+          description: Successfully created contact
+        '500':
+          description: 500 Internal Server Error
+  
+  '/{contactEmail}':
+    get:
+      tags:
+        - Contact
+      summary: Get Contact By Email
+      operationId: getContactByEmail
+      description: Get Contact By Email
+      parameters:
+        - name: contactEmail
+          in: path
+          required: true
+          description: email of the contact
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully return contact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '404':
+          description: 404 Not Found - Resource does not exist
+
+components:
+  schemas:
+    ContactResponse:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        source:
+          type: string
+        request_count:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    CreateNewContact:
+      required:
+        - name
+        - email
+        - phone
+        - source
+        - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        source:
+          type: string
+        request_count:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
